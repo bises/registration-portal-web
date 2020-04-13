@@ -1,1 +1,25 @@
 /* You can add global styles to this file, and also import other style files */
+@import 'assets/scss/modules/_fonts.scss';
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  background-color: #e9ecef;
+}
+* {
+  font-family: 'FONTASY_ HIMALI_ TT';
+}
+
+.mat-form-field {
+    line-height: 1.35;
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}

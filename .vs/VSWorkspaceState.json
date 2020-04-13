@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\directives",
+    "\\src\\app\\homepage",
+    "\\src\\app\\interfaces",
+    "\\src\\app\\udhyog",
+    "\\src\\app\\udhyog\\udhyog-registration",
+    "\\src\\assets",
+    "\\src\\assets\\scss\\modules"
+  ],
+  "SelectedNode": "\\src\\app\\app.module.ts",
+  "PreviewInSolutionExplorer": false
+}

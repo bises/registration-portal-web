@@ -1,0 +1,64 @@
+<div class="album bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_naam"></mat-label>
+          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher" [ngModel]="owner?.name" (ngModelChange)="owner.name=$event">
+          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+          <mat-error *ngIf="personNameControl.hasError('required')"
+                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_gender"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let gender of genders; let i = index" [value]="i">
+              {{gender}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_cast"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let cast of casts; let i = index" [value]="i">
+              {{cast}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_nagarikta_number"></mat-label>
+          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+          <mat-error *ngIf="personNameControl.hasError('required')"
+                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_thegana"></mat-label>
+          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+          <mat-error *ngIf="personNameControl.hasError('required')"
+                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyami_contact_number"></mat-label>
+          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+          <mat-error *ngIf="personNameControl.hasError('required')"
+                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button mat-button (click)="onNoClick()">gf]</button>
+      </div>
+      <div class="col-md-4">
+        <button mat-button (click)="submit()">;]r</button>
+      </div>
+    </div>
+  </div>
+

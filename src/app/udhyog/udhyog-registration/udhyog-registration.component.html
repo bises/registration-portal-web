@@ -1,0 +1,153 @@
+<div class="album py-5 bg-light">
+  <div class="alert alert-info mx-5 text-center" role="alert" appLocalization="gui_udhyogdarta_alert_message"></div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_darta_no"></mat-label>
+          <input matInput [formControl]="registrationFormControl" [errorStateMatcher]="matcher">
+          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+          <mat-error *ngIf="registrationFormControl.hasError('pattern')"
+                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_darta_miti"></mat-label>
+          <input matInput [formControl]="nepaliDateControl" [errorStateMatcher]="matcher">
+          <mat-hint appLocalization="gui_udhyogdarta_darta_miti_hint"></mat-hint>
+          <mat-error *ngIf="nepaliDateControl.hasError('pattern')"
+                     appLocalization="gui_udhyogdarta_darta_miti_error_pattern">
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_name"></mat-label>
+          <input matInput [formControl]="udhyogNameControl" [errorStateMatcher]="matcher">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+              {{udhyogCategory.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_udhyog_legal_type"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+              {{udhyogCategory.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+              {{udhyogCategory.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_udhyog_sub_category"></mat-label>
+          <mat-select>
+            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+              {{udhyogCategory.name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_udhesya"></mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_barsik_utpadan"></mat-label>
+          <input matInput>
+        </mat-form-field>
+      </div>
+      <div class="col-md-6">
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_bidhut_sakti"></mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_samparka"></mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_rajaswa"></mat-label>
+          <input matInput>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <mat-label appLocalization="gui_udhyogdarta_pan_no"></mat-label>
+          <input matInput>
+        </mat-form-field>
+        <div class="card">
+          <div class="card-header" appLocalization="gui_udhyogdarta_address"></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label appLocalization="gui_udhyogdarta_address_nagarpalika"></mat-label>
+                  <input matInput readonly appLocalization="gui_udhyogdarta_udhesya" value="ddd">
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label appLocalization="gui_udhyogdarta_address_wada_no"></mat-label>
+                  <input matInput>
+                </mat-form-field>
+              </div>
+              <div class="col-md-4">
+                <mat-form-field class="example-full-width">
+                  <mat-label appLocalization="gui_udhyogdarta_address_chetra_no"></mat-label>
+                  <input matInput>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card mt-3">
+          <div class="card-header" appLocalization="gui_udhyogdarta_kaamdar_biwaran"></div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <mat-label appLocalization="gui_udhyogdarta_kaamdar_biwaran_male"></mat-label>
+                  <input matInput [formControl]="maleWorkersControl" [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="maleWorkersControl.hasError('pattern')"
+                             appLocalization="gui_udhyogdarta_only_number_error_mesage">
+                  </mat-error>
+                </mat-form-field>
+              </div>
+              <div class="col-md-6">
+                <mat-form-field class="example-full-width">
+                  <mat-label appLocalization="gui_udhyogdarta_kaamdar_biwaran_female"></mat-label>
+                  <input matInput [formControl]="femaleWorkersControl" [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="maleWorkersControl.hasError('pattern')"
+                             appLocalization="gui_udhyogdarta_only_number_error_mesage">
+                  </mat-error>
+                </mat-form-field>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center mt-5">
+      <button type="button" class="btn btn-primary btn-lg" appLocalization="gui_udhyogdarta_goto_udhymi_biwaran_page" (click)="openModal()"></button>
+    </div>
+  </div>
+</div>
