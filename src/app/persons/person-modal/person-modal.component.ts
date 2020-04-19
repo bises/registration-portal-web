@@ -10,7 +10,7 @@ import { Person } from '../../interfaces/Person';
 export class PersonModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PersonModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Person) { }
+              @Inject(MAT_DIALOG_DATA) public data: Person) { }
 
   ngOnInit() {
   }
@@ -19,8 +19,9 @@ export class PersonModalComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  submit(event: Person | null): void {
-    console.log(event);
+  submit(event: Person): void {
+    this.data = event;
+    this.dialogRef.close(event);
   }
 
 }

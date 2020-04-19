@@ -1,18 +1,19 @@
 <div class="album bg-light">
-  <div class="container">
+  <div class="container" style="overflow-y: scroll; height:400px;">
     <div class="row">
       <div class="col-md-12">
+        <form [formGroup]="ownerFormGroup">
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_naam"></mat-label>
-          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher" [ngModel]="owner?.name" (ngModelChange)="owner.name=$event">
+          <input matInput formControlName="name" [errorStateMatcher]="matcher">
           <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
-          <mat-error *ngIf="personNameControl.hasError('required')"
+          <mat-error *ngIf="errorHandling('name', 'required')"
                      appLocalization="gui_udhyogdarta_darta_no_error_pattern">
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_gender"></mat-label>
-          <mat-select>
+          <mat-select formControlName="gender" [errorStateMatcher]="matcher">
             <mat-option *ngFor="let gender of genders; let i = index" [value]="i">
               {{gender}}
             </mat-option>
@@ -20,7 +21,7 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_cast"></mat-label>
-          <mat-select>
+          <mat-select formControlName="cast" [errorStateMatcher]="matcher">
             <mat-option *ngFor="let cast of casts; let i = index" [value]="i">
               {{cast}}
             </mat-option>
@@ -28,37 +29,36 @@
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_nagarikta_number"></mat-label>
-          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <input matInput formControlName="citizenshipNumber" [errorStateMatcher]="matcher">
           <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
-          <mat-error *ngIf="personNameControl.hasError('required')"
-                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+          <mat-error *ngIf="errorHandling('address', 'required')" 
+          appLocalization="gui_udhyogdarta_darta_no_error_pattern">adasd
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_thegana"></mat-label>
-          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <input matInput formControlName="address" [errorStateMatcher]="matcher">
           <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
-          <mat-error *ngIf="personNameControl.hasError('required')"
+          <mat-error *ngIf="errorHandling('address', 'required')"
                      appLocalization="gui_udhyogdarta_darta_no_error_pattern">
           </mat-error>
         </mat-form-field>
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyami_contact_number"></mat-label>
-          <input matInput [formControl]="personNameControl" [errorStateMatcher]="matcher">
+          <input matInput formControlName="contactNumber" [errorStateMatcher]="matcher">
           <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
-          <mat-error *ngIf="personNameControl.hasError('required')"
+          <mat-error *ngIf="errorHandling('contactNumber', 'required')"
                      appLocalization="gui_udhyogdarta_darta_no_error_pattern">
           </mat-error>
         </mat-form-field>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-md-4">
-        <button mat-button (click)="onNoClick()">gf]</button>
-      </div>
-      <div class="col-md-4">
-        <button mat-button (click)="submit()">;]r</button>
+      </form>
       </div>
     </div>
   </div>
+</div>
+
+<div class="d-flex justify-content-center mt-3">
+  <button type="button" class="btn btn-secondary mr-2 w-5" (click)="onNoClick()" appLocalization="gui_udhyami_cancel_button"></button>  
+  <button type="button" class="btn btn-primary ml-2 w-5" (click)="submit()" appLocalization="gui_udhyami_save_button"></button>
+</div>
 

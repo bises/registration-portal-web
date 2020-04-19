@@ -5,6 +5,7 @@ import { UdhyogCategory } from '../../interfaces/UdhyogCategoy';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonModalComponent } from '../../persons/person-modal/person-modal.component';
+import { Person } from 'src/app/interfaces/Person';
 
 @Component({
   selector: 'app-udhyog-registration',
@@ -45,19 +46,19 @@ export class UdhyogRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    //this.udhyogService.test().subscribe(data => console.log(data));
+    // this.udhyogService.test().subscribe(data => console.log(data));
     this.udhyogService.getUdhyogCategories()
       .subscribe(data => this.udhyogCategories = data);
   }
 
   openModal(): void {
     const dialogRef = this.dialog.open(PersonModalComponent, {
-      width: '550px',
+      width: '570px',
       data: { }
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
+    dialogRef.afterClosed().subscribe((result: Person) => {
+      console.log(result);
     });
   }
 
