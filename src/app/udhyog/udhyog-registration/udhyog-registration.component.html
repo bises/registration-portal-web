@@ -1,96 +1,97 @@
 <div class="album py-5 bg-light">
   <div class="alert alert-info mx-5 text-center" role="alert" appLocalization="gui_udhyogdarta_alert_message"></div>
   <div class="container">
-    <div class="row">
+    <div class="row">      
+      <form [formGroup]="udhyogDartaFormGroup">
       <div class="col-md-6">
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_darta_no"></mat-label>
-          <input matInput [formControl]="registrationFormControl" [errorStateMatcher]="matcher">
-          <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
-          <mat-error *ngIf="registrationFormControl.hasError('pattern')"
-                     appLocalization="gui_udhyogdarta_darta_no_error_pattern">
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_darta_no"></mat-label>
+            <input matInput formControlName="registrationNumber" [errorStateMatcher]="matcher">
+            <!--<mat-hint appLocalization="gui_udhyogdarta_darta_no"></mat-hint>-->
+            <mat-error *ngIf="errorHandling('companyName', 'required')"
+                      appLocalization="gui_udhyogdarta_darta_no_error_pattern">
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_darta_miti"></mat-label>
-          <input matInput [formControl]="nepaliDateControl" [errorStateMatcher]="matcher">
-          <mat-hint appLocalization="gui_udhyogdarta_darta_miti_hint"></mat-hint>
-          <mat-error *ngIf="nepaliDateControl.hasError('pattern')"
-                     appLocalization="gui_udhyogdarta_darta_miti_error_pattern">
-          </mat-error>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_darta_miti"></mat-label>
+            <input matInput formControlName="registrationDate" [errorStateMatcher]="matcher">
+            <mat-hint appLocalization="gui_udhyogdarta_darta_miti_hint"></mat-hint>
+            <mat-error *ngIf="errorHandling('companyName', 'required')"
+                      appLocalization="gui_udhyogdarta_darta_miti_error_pattern">
+            </mat-error>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_name"></mat-label>
-          <input matInput [formControl]="udhyogNameControl" [errorStateMatcher]="matcher">
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_name"></mat-label>
+            <input matInput formControlName="companyName" [errorStateMatcher]="matcher">
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
-          <mat-select>
-            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
-              {{udhyogCategory.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <!-- <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
+            <mat-select formControlName="companyType">
+              <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+                {{udhyogCategory.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field> -->
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_udhyog_legal_type"></mat-label>
-          <mat-select>
-            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
-              {{udhyogCategory.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_udhyog_legal_type"></mat-label>
+            <mat-select formControlName="companyLegalType">
+              <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+                {{udhyogCategory.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
-          <mat-select>
-            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
-              {{udhyogCategory.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_udhyog_category"></mat-label>
+            <mat-select formControlName="companyType">
+              <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+                {{udhyogCategory.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_udhyog_sub_category"></mat-label>
-          <mat-select>
-            <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
-              {{udhyogCategory.name}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_udhyog_sub_category"></mat-label>
+            <mat-select formControlName="companySubType">
+              <mat-option *ngFor="let udhyogCategory of udhyogCategories" [value]="udhyogCategory.id">
+                {{udhyogCategory.name}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_udhesya"></mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_udhesya"></mat-label>
+            <input matInput formControlName="companyObjective">
+          </mat-form-field>
 
-        <mat-form-field class="example-full-width">
-          <mat-label appLocalization="gui_udhyogdarta_barsik_utpadan"></mat-label>
-          <input matInput>
-        </mat-form-field>
+          <mat-form-field class="example-full-width">
+            <mat-label appLocalization="gui_udhyogdarta_barsik_utpadan"></mat-label>
+            <input matInput formControlName="yearlyRevenue">
+          </mat-form-field>
       </div>
       <div class="col-md-6">
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyogdarta_bidhut_sakti"></mat-label>
-          <input matInput>
+          <input matInput formControlName="electricPower">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyogdarta_samparka"></mat-label>
-          <input matInput>
+          <input matInput formControlName="companyContact">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyogdarta_rajaswa"></mat-label>
-          <input matInput>
+          <input matInput formControlName="revenue">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
           <mat-label appLocalization="gui_udhyogdarta_pan_no"></mat-label>
-          <input matInput>
+          <input matInput formControlName="panNumber">
         </mat-form-field>
         <div class="card">
           <div class="card-header" appLocalization="gui_udhyogdarta_address"></div>
@@ -99,19 +100,20 @@
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label appLocalization="gui_udhyogdarta_address_nagarpalika"></mat-label>
-                  <input matInput readonly appLocalization="gui_udhyogdarta_udhesya" value="ddd">
+                  <input matInput readonly formControlName="companyAddressNagarpalik"
+                  appLocalization="gui_udhyogdarta_udhesya" value="ddd">
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label appLocalization="gui_udhyogdarta_address_wada_no"></mat-label>
-                  <input matInput>
+                  <input matInput formControlName="companyAddressWada">
                 </mat-form-field>
               </div>
               <div class="col-md-4">
                 <mat-form-field class="example-full-width">
                   <mat-label appLocalization="gui_udhyogdarta_address_chetra_no"></mat-label>
-                  <input matInput>
+                  <input matInput formControlName="companyAddressChetra">
                 </mat-form-field>
               </div>
             </div>
@@ -125,8 +127,8 @@
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label appLocalization="gui_udhyogdarta_kaamdar_biwaran_male"></mat-label>
-                  <input matInput [formControl]="maleWorkersControl" [errorStateMatcher]="matcher">
-                  <mat-error *ngIf="maleWorkersControl.hasError('pattern')"
+                  <input matInput formControlName="maleWorkersCount" [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="errorHandling('companyName', 'required')"
                              appLocalization="gui_udhyogdarta_only_number_error_mesage">
                   </mat-error>
                 </mat-form-field>
@@ -134,8 +136,8 @@
               <div class="col-md-6">
                 <mat-form-field class="example-full-width">
                   <mat-label appLocalization="gui_udhyogdarta_kaamdar_biwaran_female"></mat-label>
-                  <input matInput [formControl]="femaleWorkersControl" [errorStateMatcher]="matcher">
-                  <mat-error *ngIf="maleWorkersControl.hasError('pattern')"
+                  <input matInput formControlName="femaleWorkersCount" [errorStateMatcher]="matcher">
+                  <mat-error *ngIf="errorHandling('companyName', 'required')"
                              appLocalization="gui_udhyogdarta_only_number_error_mesage">
                   </mat-error>
                 </mat-form-field>
@@ -144,10 +146,40 @@
           </div>
         </div>
       </div>
+    </form>
     </div>
 
     <div class="d-flex justify-content-center mt-5">
       <button type="button" class="btn btn-primary" appLocalization="gui_udhyogdarta_goto_udhymi_biwaran_page" (click)="openModal()"></button>
+    </div>
+
+    <div class="row mt-3">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_naam"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_nagarikta_number"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_gender"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_cast"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_thegana"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_contact_number"></th>
+              <th scope="col" appLocalization="gui_udhyogdarta_table_disability"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let owner of owners; let i = index">
+              <td>{{owner.name}}</td>
+              <td>{{owner.citizenshipNumber}}</td>
+              <td>{{owner.gender}}</td>
+              <td>{{owner.cast}}</td>
+              <td>{{owner.address}}</td>
+              <td>{{owner.contactNumber}}</td>
+              <td>{{owner.disability}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

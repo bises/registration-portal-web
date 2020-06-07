@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { MyErrorStateMatcher } from '../utilities/MyErrorStateMatcher';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Person } from '../interfaces/Person';
+import { Cast } from '../interfaces/cast';
+import { Gender } from '../interfaces/gender';
 
 @Component({
   selector: 'app-persons',
@@ -11,9 +13,9 @@ import { Person } from '../interfaces/Person';
 export class PersonsComponent implements OnInit {
   public matcher = new MyErrorStateMatcher();
 
-  public genders = ['k"?if', 'dlxnf'];
+  public genders = Gender.GenderList;
 
-  public casts = ['blnt', 'hghftL', 'db];L', 'cGo'];
+  public casts = Cast.CastsList;
 
   @Input() public owner: Person;
 

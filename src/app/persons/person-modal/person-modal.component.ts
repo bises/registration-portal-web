@@ -20,7 +20,9 @@ export class PersonModalComponent implements OnInit {
   }
 
   submit(event: Person): void {
-    this.data = event;
+    if (event.disability === null) {
+      event.disability = false;
+    }
     this.dialogRef.close(event);
   }
 

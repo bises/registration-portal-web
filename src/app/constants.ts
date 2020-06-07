@@ -36,6 +36,15 @@ export class Constants {
   public static gui_udhyogdarta_goto_udhymi_biwaran_page = 'pBdLsf] ljj/)f eg"{xf];\\';
   public static gui_udhyogdarta_alert_message = 'pBf]usf] ljj/)f e/]kl% pBdLsf] ljj /)feg{ ge"Ng"xf]nf';
 
+  public static gui_udhyogdarta_table_naam = 'gfd';
+  public static gui_udhyogdarta_table_gender = 'lné';
+  public static gui_udhyogdarta_table_cast = 'hft';
+  public static gui_udhyogdarta_table_disability = 'ckf+u';
+  public static gui_udhyogdarta_table_nagarikta_number = 'gful/stf g+';
+  public static gui_udhyogdarta_table_thegana = '&]ufgf';
+  public static gui_udhyogdarta_table_contact_number = ';Dks{ g+';
+
+
   // person component content'
   public static gui_udhyami_title = 'pBdLsf] lja/)f';
   public static gui_udhyami_naam = 'gfd';

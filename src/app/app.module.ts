@@ -10,6 +10,7 @@ import { LocalizationDirective } from './directives/localization.directive';
 import { UdhyogRegistrationComponent } from './udhyog/udhyog-registration/udhyog-registration.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
@@ -37,13 +38,15 @@ import { PersonModalComponent } from './persons/person-modal/person-modal.compon
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    MatCheckboxModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
-    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } }
+    { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
+    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check-indeterminate'}
   ],
   bootstrap: [AppComponent]
 })
