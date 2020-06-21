@@ -13,10 +13,12 @@ export class Constants {
   public static gui_udhyogdarta_darta_miti_hint = 'pwf/)fM 2070.12.24 2070 r}q 24';
   public static gui_udhyogdarta_darta_no_error_pattern = 'btf{ gDa/df gDa/ dfq /fVgÚxf]nf';
   public static gui_udhyogdarta_darta_miti_error_pattern = 'ldtL n]v]sf] z}ln ldn]g';
-  public static gui_udhyogdarta_udhyog_type = 'pBf]usf] k|sf/';
+  public static gui_udhyogdarta_udhyog_category = 'pBf]usf] k|sf/';
   public static gui_udhyogdarta_udhyog_legal_type = 'pBf]usf] sfgÚgL ?k';
-  public static gui_udhyogdarta_udhyog_category = 'pBf]usf] ju{';
-  public static gui_udhyogdarta_udhyog_sub_category = 'pBf]usf] pkju{';
+  public static gui_udhyogdarta_udhyog_type = 'pBf]usf] ju{';
+  public static gui_udhyogdarta_udhyog_type_add = 'ju{ yKg"xf];';
+  public static gui_udhyogdarta_udhyog_sub_type = 'pBf]usf] pkju{';
+  public static gui_udhyogdarta_udhyog_sub_type_add = 'pkju{ yKg"xf];'
   public static gui_udhyogdarta_name = 'pBf]usf] gfd';
   public static gui_udhyogdarta_udhesya = 'p$]Zo';
   public static gui_udhyogdarta_address = '&]ufgf';
@@ -34,7 +36,7 @@ export class Constants {
   public static gui_udhyogdarta_kaamdar_biwaran_total = 's"n sfdbf/';
   public static gui_udhyogdarta_only_number_error_mesage = 'c+s dfq /fVgÚxf]nf';
   public static gui_udhyogdarta_goto_udhymi_biwaran_page = 'pBdLsf] ljj/)f eg"{xf];\\';
-  public static gui_udhyogdarta_alert_message = 'pBf]usf] ljj/)f e/]kl% pBdLsf] ljj /)feg{ ge"Ng"xf]nf';
+  public static gui_udhyogdarta_alert_message = 'pBf]usf] ljj/)f e/]kl% pBdLsf] ljj/)f eg{ ge"Ng"xf]nf';
 
   public static gui_udhyogdarta_table_naam = 'gfd';
   public static gui_udhyogdarta_table_gender = 'lné';
@@ -44,6 +46,7 @@ export class Constants {
   public static gui_udhyogdarta_table_thegana = '&]ufgf';
   public static gui_udhyogdarta_table_contact_number = ';Dks{ g+';
 
+  public static gui_udhyogdarta_save = ';]e ug"{xf];\\'
 
   // person component content'
   public static gui_udhyami_title = 'pBdLsf] lja/)f';
