@@ -4,6 +4,7 @@ import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { Person } from '../interfaces/Person';
 import { Cast } from '../interfaces/cast';
 import { Gender } from '../interfaces/gender';
+import { CompanyOwner } from '../interfaces/companyOwner';
 
 @Component({
   selector: 'app-persons',
@@ -19,7 +20,7 @@ export class PersonsComponent implements OnInit {
 
   @Input() public owner: Person;
 
-  @Output() save: EventEmitter<Person> = new EventEmitter<Person>();
+  @Output() save: EventEmitter<CompanyOwner> = new EventEmitter<CompanyOwner>();
 
   public ownerFormGroup = new FormGroup({
     name: new FormControl('', [
@@ -40,7 +41,7 @@ export class PersonsComponent implements OnInit {
     gender: new FormControl('', [
       Validators.required
     ]),
-    disability: new FormControl()
+    disability: new FormControl(false)
   });
 
   constructor() { }
@@ -63,7 +64,16 @@ export class PersonsComponent implements OnInit {
   }
 
   submit() {
-    this.save.emit(this.ownerFormGroup.value);
+    let companyOwner: CompanyOwner = {
+      name: this.ownerFormGroup.value.name,
+      cast: this.ownerFormGroup.value.cast,
+      citizenShipNumber: this.ownerFormGroup.value.citizenshipNumber,
+      gender: this.ownerFormGroup.value.gender,
+      contact: this.ownerFormGroup.value.contactNumber,
+      isDisable: this.ownerFormGroup.value.disability,
+      address: this.ownerFormGroup.value.address
+    }
+    this.save.emit(companyOwner);
   }
 
 }

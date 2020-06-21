@@ -12,11 +12,14 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/checkbox';
 import { MatSelectModule } from '@angular/material/select';
+import { MatListModule } from '@angular/material/list';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { HttpClientModule } from '@angular/common/http';
 import { PersonModalComponent } from './persons/person-modal/person-modal.component';
+import { CompanyTypesComponent } from './company-types/company-types.component';
+import { CompanyTypesModalComponent } from './company-types/company-types-modal/company-types-modal.component';
 
 @NgModule({
   declarations: [
@@ -25,10 +28,13 @@ import { PersonModalComponent } from './persons/person-modal/person-modal.compon
     HomepageComponent,
     LocalizationDirective,
     UdhyogRegistrationComponent,
-    PersonModalComponent
+    PersonModalComponent,
+    CompanyTypesComponent,
+    CompanyTypesModalComponent
   ],
   entryComponents: [
-    PersonModalComponent
+    PersonModalComponent,
+    CompanyTypesModalComponent
   ],
   imports: [
     BrowserModule,
@@ -39,6 +45,7 @@ import { PersonModalComponent } from './persons/person-modal/person-modal.compon
     MatSelectModule,
     MatDialogModule,
     MatCheckboxModule,
+    MatListModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule

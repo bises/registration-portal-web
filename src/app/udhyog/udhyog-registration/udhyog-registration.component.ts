@@ -1,12 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UdhyogService } from '../udhyog.service';
-import { UdhyogCategory } from '../../interfaces/UdhyogCategoy';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonModalComponent } from '../../persons/person-modal/person-modal.component';
-import { Person } from 'src/app/interfaces/Person';
-import { Constants } from 'src/app/constants';
+import { Udhyog } from 'src/app/interfaces/Udhyog';
+import { CompanyOwner } from 'src/app/interfaces/companyOwner';
+import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
+import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
+import { CompanyTypesModalComponent } from 'src/app/company-types/company-types-modal/company-types-modal.component';
+import { CompanyCategory } from 'src/app/interfaces/companyCategory';
 
 @Component({
   selector: 'app-udhyog-registration',
@@ -15,27 +18,7 @@ import { Constants } from 'src/app/constants';
 })
 export class UdhyogRegistrationComponent implements OnInit {
 
-  // public registrationFormControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern('[0-9]*')
-  // ]);
-
-  // public nepaliDateControl = new FormControl('', [
-  //   Validators.required,
-  //   Validators.pattern('[0-9]{4}\.[0-9]{1,2}\.[0-9]{1,2}')
-  // ]);
-
-  // public maleWorkersControl = new FormControl('', [
-  //   Validators.pattern('[0-9]*')
-  // ]);
-
-  // public femaleWorkersControl = new FormControl('', [
-  //   Validators.pattern('[0-9]*')
-  // ]);
-
-  // public udhyogNameControl = new FormControl('', [
-  //   Validators.required
-  // ]);
+  public udhyog: Udhyog;
 
   public udhyogDartaFormGroup = new FormGroup({
     registrationNumber: new FormControl('', [
@@ -46,28 +29,55 @@ export class UdhyogRegistrationComponent implements OnInit {
         Validators.required,
         Validators.pattern('[0-9]{4}\.[0-9]{1,2}\.[0-9]{1,2}')
       ]),
-    companyName: new FormControl(),
-    companyType: new FormControl(),
-    companySubType: new FormControl(),
-    companyLegalType: new FormControl(),
-    companyObjective: new FormControl(),
-    yearlyRevenue: new FormControl(),
-    electricPower: new FormControl(),
-    companyContact: new FormControl(),
-    revenue: new FormControl(),
+    companyName: new FormControl('', [
+      Validators.required
+    ]),
+    companyCategory:new FormControl('', [
+      Validators.required
+    ]),
+    companyType: new FormControl('', [
+      Validators.required
+    ]),
+    companySubType: new FormControl('', [
+      Validators.required
+    ]),
+    legalType: new FormControl('', [
+      Validators.required
+    ]),
+    objective: new FormControl(),
+    annualProduction: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ]),
+    electricalPowerUsage: new FormControl(),
+    contact: new FormControl(),
+    revenue: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ]),
     panNumber: new FormControl(),
-    companyAddressNagarpalik: new FormControl(),
-    companyAddressWada: new FormControl(),
-    companyAddressChetra: new FormControl(),
-    maleWorkersCount: new FormControl(),
-    femaleWorkersCount: new FormControl()
+    nagarpalikaName: new FormControl('a]Nsf'),
+    wadaNumber: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ]),
+    areaNumber: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ]),
+    maleWorkerNumber: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ]),
+    femaleWorkerNumber: new FormControl('', [
+      Validators.pattern('[0-9]*')
+    ])
   });
 
-  public owners: Person[] = [];
+  public owners: CompanyOwner[] = [];
 
   public matcher = new MyErrorStateMatcher();
 
-  public udhyogCategories: UdhyogCategory[];
+  public udhyogTypes: string[];
+  public udhyogSubTypes: string[] = [];
+  public udhyogCategories: string[] = CompanyCategory.CategoryList;
+  public companyTypeObjects: CompanyTypeObject[];
+  public udhyogLegalTypes = CompanyLegalTypes.LegalTypes
 
   constructor(
     private udhyogService: UdhyogService,
@@ -77,7 +87,10 @@ export class UdhyogRegistrationComponent implements OnInit {
   ngOnInit() {
     // this.udhyogService.test().subscribe(data => console.log(data));
     this.udhyogService.getUdhyogCategories()
-      .subscribe(data => this.udhyogCategories = data);
+      .subscribe((data: CompanyTypeObject[]) => {
+        this.companyTypeObjects = data;
+        this.udhyogTypes = data.map(c => c.typeName);
+      });
   }
 
   openModal(): void {
@@ -86,9 +99,32 @@ export class UdhyogRegistrationComponent implements OnInit {
       data: { }
     });
 
-    dialogRef.afterClosed().subscribe((result: Person) => {
-      console.log(result);
-      this.owners.push(result);
+    dialogRef.afterClosed().subscribe((result: CompanyOwner | null) => {
+      if(result){
+        this.owners.push(result);
+      }
+    });
+  }
+
+  getSubtypes(event: any){
+    console.log(event);
+    let selectedType = this.udhyogDartaFormGroup.value.companyType;
+    var selectedTypeObject = this.companyTypeObjects.find(c => c.typeName === selectedType );
+    if(selectedTypeObject){
+      this.udhyogSubTypes = selectedTypeObject.subTypes;
+    }
+  }
+
+  openModalForAddingUdhyogTypes() {
+    const dialogRef = this.dialog.open(CompanyTypesModalComponent, {
+      width: '570px',
+      data: { }
+    });
+
+    dialogRef.afterClosed().subscribe((result: CompanyTypeObject | null) => {
+      if(result){
+        this.companyTypeObjects.push(result);
+      }
     });
   }
 
@@ -97,4 +133,39 @@ export class UdhyogRegistrationComponent implements OnInit {
     return this.udhyogDartaFormGroup.controls[control].hasError(error);
   }
 
+  public register(){
+    let udhyog: Udhyog = {
+      registrationNumber: +this.udhyogDartaFormGroup.value.registrationNumber,
+      registrationDate: new Date(this.udhyogDartaFormGroup.value.registrationDate),
+      companyName: this.udhyogDartaFormGroup.value.companyName,
+      legalType: this.udhyogDartaFormGroup.value.legalType,
+      companyCategory: this.udhyogDartaFormGroup.value.companyCategory,
+      companyType: this.udhyogDartaFormGroup.value.companyType,
+      companySubType: this.udhyogDartaFormGroup.value.companySubType,
+      objective: this.udhyogDartaFormGroup.value.objective,
+      annualProduction: +this.udhyogDartaFormGroup.value.annualProduction,
+      electricalPowerUsage: this.udhyogDartaFormGroup.value.electricalPowerUsage,
+      contact: this.udhyogDartaFormGroup.value.contact,
+      revenue: +this.udhyogDartaFormGroup.value.revenue,
+      panNumber: this.udhyogDartaFormGroup.value.panNumber,
+      companyAddress: {
+        nagarpalikaName: this.udhyogDartaFormGroup.value.nagarpalikaName,
+        wadaNumber: +this.udhyogDartaFormGroup.value.wadaNumber,
+        areaNumber: +this.udhyogDartaFormGroup.value.areaNumber
+      },
+      workersDetail: {
+        maleWorkerNumber: +this.udhyogDartaFormGroup.value.maleWorkerNumber,
+        femaleWorkerNumber: +this.udhyogDartaFormGroup.value.femaleWorkerNumber
+      },
+      ownersDetail: this.owners,
+    }
+    this.udhyogService.saveUdhyog(udhyog)
+      .subscribe((data: Udhyog) => {
+        this.initilizeForm(data)
+      });
+  }
+
+  initilizeForm(data: Udhyog) {
+    // Add method to intialize the form
+  }
 }
