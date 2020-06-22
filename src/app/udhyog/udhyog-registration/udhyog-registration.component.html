@@ -49,7 +49,7 @@
     
           <mat-form-field class="example-full-width">
             <mat-label appLocalization="gui_udhyogdarta_udhyog_type"></mat-label>
-            <mat-select formControlName="companyType" (selectionChange)="getSubtypes($event)">              
+            <mat-select formControlName="companyType" (selectionChange)="getSubtypes()">              
               <mat-option>
                 <a class="text-primary" (click)="openModalForAddingUdhyogTypes()" appLocalization="gui_udhyogdarta_udhyog_type_add"></a>
               </mat-option>
