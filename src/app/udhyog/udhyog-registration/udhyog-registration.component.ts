@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UdhyogService } from '../udhyog.service';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
@@ -106,8 +106,7 @@ export class UdhyogRegistrationComponent implements OnInit {
     });
   }
 
-  getSubtypes(event: any){
-    console.log(event);
+  getSubtypes(){
     let selectedType = this.udhyogDartaFormGroup.value.companyType;
     var selectedTypeObject = this.companyTypeObjects.find(c => c.typeName === selectedType );
     if(selectedTypeObject){
@@ -124,6 +123,11 @@ export class UdhyogRegistrationComponent implements OnInit {
     dialogRef.afterClosed().subscribe((result: CompanyTypeObject | null) => {
       if(result){
         this.companyTypeObjects.push(result);
+        this.udhyogTypes.push(result.typeName);
+        this.udhyogDartaFormGroup.patchValue({
+          companyType: result.typeName
+        });
+        this.getSubtypes();
       }
     });
   }
