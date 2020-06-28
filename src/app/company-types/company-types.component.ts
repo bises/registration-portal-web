@@ -2,6 +2,7 @@ import { Component, OnInit, Input, ChangeDetectorRef, Output, EventEmitter } fro
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/utilities/MyErrorStateMatcher';
 import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
+import { UdhyogService } from '../udhyog/udhyog.service';
 
 @Component({
   selector: 'app-company-types',
@@ -10,26 +11,34 @@ import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
 })
 export class CompanyTypesComponent implements OnInit {
 
-  @Input() public companyTypes: string;
+  @Input() public companyType: CompanyTypeObject;
   @Input() public companyTypeObject: CompanyTypeObject[];
 
   @Output() save: EventEmitter<CompanyTypeObject> = new EventEmitter<CompanyTypeObject>();
 
   public companySubTypes: string[] = [];
   public matcher = new MyErrorStateMatcher();
+  public isAddingCategories = false;
 
   public typesFormGroup = new FormGroup({
     types: new FormControl('', [
       Validators.required
     ]),
-    subTypes: new FormControl('', [
-      Validators.required
-    ])
+    subTypes: new FormControl('')
   })
 
-  constructor(private cdRef: ChangeDetectorRef) { }
+  constructor(private cdRef: ChangeDetectorRef,
+    private udhyogService: UdhyogService) { }
 
   ngOnInit() {
+    if(this.companyType){
+      this.typesFormGroup.patchValue({
+        types: this.companyType.typeName
+      });
+      this.typesFormGroup.controls["types"].disable();
+      this.companySubTypes = this.companyType.subTypes
+      this.isAddingCategories = true;
+    }
   }
 
   getSubTypes(event: any){
@@ -38,6 +47,7 @@ export class CompanyTypesComponent implements OnInit {
 
   addSubType(){
     this.companySubTypes.push(this.typesFormGroup.value.subTypes);
+    this.typesFormGroup.controls["subTypes"].setValue("");
     this.cdRef.detectChanges();
   }
 
@@ -48,10 +58,14 @@ export class CompanyTypesComponent implements OnInit {
 
   submit(){
     let comanyTypeObject: CompanyTypeObject = {
-      typeName: this.typesFormGroup.value.types,
-      subTypes: this.companySubTypes
+      typeName: this.typesFormGroup.controls["types"].value,
+      subTypes: this.companySubTypes,
+      nagarpalikaName: 'a]Nsf'
     }
-    this.save.emit(comanyTypeObject);
+    this.udhyogService.saveUdhyogType(comanyTypeObject)
+    .subscribe(data => {      
+      this.save.emit(data);
+    })
   }
 
   onNoClick() {

@@ -11,7 +11,7 @@ import { PersonModalComponent } from 'src/app/persons/person-modal/person-modal.
 export class CompanyTypesModalComponent implements OnInit {
 
   constructor(public dialogRef: MatDialogRef<PersonModalComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: string) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit() {
   }

@@ -12,23 +12,32 @@ export class UdhyogService {
   constructor(private httpClient: HttpClient) { }
 
   getUdhyogCategories(): Observable<CompanyTypeObject[]> {
-    let subTypesa = ['a', 'b', 'c', 'd', 'e'];
-    let companyTypeObject: CompanyTypeObject[] = [
-      {
-        typeName: 'a',
-        subTypes: subTypesa
-      },
-      {
-        typeName: 'b',
-        subTypes: subTypesa
-      }
-    ]
-    return of(companyTypeObject);
+    // let subTypesa = ['a', 'b', 'c', 'd', 'e'];
+    // let companyTypeObject: CompanyTypeObject[] = [
+    //   {
+    //     typeName: 'a',
+    //     subTypes: subTypesa
+    //   },
+    //   {
+    //     typeName: 'b',
+    //     subTypes: subTypesa
+    //   }
+    // ]
+    return of(null);
+  }  
+  
+  saveUdhyogType(comanyTypeObject: CompanyTypeObject) : Observable<CompanyTypeObject> {
+    let url = 'https://iqi5ag4a93.execute-api.us-east-2.amazonaws.com/Prod/api/udhyog/types';
+    // let url = 'http://localhost:5000/api/udhyog/types'
+    const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
+    // let options = { headers: headers , responseType: 'text' as 'json'};
+    let options = { headers: headers };
+    return this.httpClient.put<any>(url, comanyTypeObject, options);
   }
 
   saveUdhyog(udhyog: Udhyog): Observable<any> {
-    // let url = 'https://iqi5ag4a93.execute-api.us-east-2.amazonaws.com/Prod/api/udhyog';
-    let url = 'http://localhost:5000/api/udhyog'
+    let url = 'https://iqi5ag4a93.execute-api.us-east-2.amazonaws.com/Prod/api/udhyog';
+    // let url = 'http://localhost:5000/api/udhyog'
     const headers = new HttpHeaders({'Content-Type':'application/json; charset=utf-8'});
     // let options = { headers: headers , responseType: 'text' as 'json'};
     let options = { headers: headers };
