@@ -63,7 +63,8 @@
             <mat-label appLocalization="gui_udhyogdarta_udhyog_sub_type"></mat-label>
             <mat-select formControlName="companySubType">
               <mat-option *ngIf="udhyogSubTypes?.length > 0">
-                <a class="text-primary" (click)="openModalForAddingUdhyogTypes()" appLocalization="gui_udhyogdarta_udhyog_sub_type_add"></a>
+                <a class="text-primary" (click)="openModalForAddingUdhyogTypes()" 
+                appLocalization="gui_udhyogdarta_udhyog_sub_type_add"></a>
               </mat-option>
               <mat-option *ngFor="let udhyogSubType of udhyogSubTypes" [value]="udhyogSubType">
                 {{udhyogSubType}}

@@ -1,4 +1,5 @@
 export interface CompanyTypeObject {
-    typeName: string,
-    subTypes: string[]
+    typeName: string;
+    subTypes: string[];
+    nagarpalikaName: string;
 }

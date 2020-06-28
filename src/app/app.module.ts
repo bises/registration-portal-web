@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PersonModalComponent } from './persons/person-modal/person-modal.component';
 import { CompanyTypesComponent } from './company-types/company-types.component';
 import { CompanyTypesModalComponent } from './company-types/company-types-modal/company-types-modal.component';
+import { HeaderComponent } from './header/header.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { CompanyTypesModalComponent } from './company-types/company-types-modal/
     UdhyogRegistrationComponent,
     PersonModalComponent,
     CompanyTypesComponent,
-    CompanyTypesModalComponent
+    CompanyTypesModalComponent,
+    HeaderComponent
   ],
   entryComponents: [
     PersonModalComponent,

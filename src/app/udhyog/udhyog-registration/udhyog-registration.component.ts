@@ -73,10 +73,10 @@ export class UdhyogRegistrationComponent implements OnInit {
 
   public matcher = new MyErrorStateMatcher();
 
-  public udhyogTypes: string[];
+  public udhyogTypes: string[] = [];
   public udhyogSubTypes: string[] = [];
   public udhyogCategories: string[] = CompanyCategory.CategoryList;
-  public companyTypeObjects: CompanyTypeObject[];
+  public companyTypeObjects: CompanyTypeObject[] = [];
   public udhyogLegalTypes = CompanyLegalTypes.LegalTypes
 
   constructor(
@@ -88,8 +88,10 @@ export class UdhyogRegistrationComponent implements OnInit {
     // this.udhyogService.test().subscribe(data => console.log(data));
     this.udhyogService.getUdhyogCategories()
       .subscribe((data: CompanyTypeObject[]) => {
-        this.companyTypeObjects = data;
-        this.udhyogTypes = data.map(c => c.typeName);
+        if(data){
+          this.companyTypeObjects = data;
+          this.udhyogTypes = data.map(c => c.typeName);
+        }
       });
   }
 
@@ -108,25 +110,29 @@ export class UdhyogRegistrationComponent implements OnInit {
 
   getSubtypes(){
     let selectedType = this.udhyogDartaFormGroup.value.companyType;
-    var selectedTypeObject = this.companyTypeObjects.find(c => c.typeName === selectedType );
-    if(selectedTypeObject){
-      this.udhyogSubTypes = selectedTypeObject.subTypes;
+    if (selectedType) {
+      var selectedTypeObject = this.companyTypeObjects.find(c => c.typeName === selectedType);
+      if (selectedTypeObject) {
+        this.udhyogSubTypes = selectedTypeObject.subTypes;
+      }
     }
   }
 
   openModalForAddingUdhyogTypes() {
+    const companyType: CompanyTypeObject = this.companyTypeObjects.find(c => c.typeName === this.udhyogDartaFormGroup.value.companyType);
     const dialogRef = this.dialog.open(CompanyTypesModalComponent, {
       width: '570px',
-      data: { }
+      data: { companyType }
     });
 
     dialogRef.afterClosed().subscribe((result: CompanyTypeObject | null) => {
       if(result){
-        this.companyTypeObjects.push(result);
-        this.udhyogTypes.push(result.typeName);
-        this.udhyogDartaFormGroup.patchValue({
-          companyType: result.typeName
-        });
+        if(!companyType){this.companyTypeObjects.push(result);          
+          this.udhyogTypes.push(result.typeName);          
+          this.udhyogDartaFormGroup.patchValue({
+            companyType: result.typeName
+          });
+        }        
         this.getSubtypes();
       }
     });

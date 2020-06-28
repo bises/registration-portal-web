@@ -11,10 +11,10 @@
                         <div class="col-md-8">
                             <mat-form-field class="example-full-width">
                                 <mat-label appLocalization="gui_udhyogdarta_udhyog_sub_type"></mat-label>
-                                <input matInput formControlName="subTypes" [errorStateMatcher]="matcher">
+                                <input matInput formControlName="subTypes">
                             </mat-form-field>
                         </div>
-                        <div class="col-md-4 float-right" *ngIf="typesFormGroup?.value?.types">
+                        <div class="col-md-4 float-right" *ngIf="isAddingCategories || typesFormGroup?.value?.types">
                             <button type="button" class="btn btn-primary mt-2" (click)="addSubType()"
                                 appLocalization="gui_udhyogdarta_udhyog_sub_type_add"></button>
                         </div>
@@ -34,7 +34,7 @@
 <div class="d-flex justify-content-center mt-3">
     <button type="button" class="btn btn-primary mr-2 w-5" (click)="onNoClick()"
         appLocalization="gui_udhyami_cancel_button"></button>
-    <button type="button" [disabled]="typesFormGroup.invalid"
-        [ngClass]="{'btn-secondary':typesFormGroup.invalid, 'btn-primary':!typesFormGroup.invalid }"
+    <button type="button" [disabled]="typesFormGroup.invalid || companySubTypes?.length == 0"
+        [ngClass]="{'btn-secondary':typesFormGroup.invalid || companySubTypes?.length == 0, 'btn-primary':!typesFormGroup.invalid || companySubTypes?.length == 0 }"
         class="btn ml-2 w-5" (click)="submit()" appLocalization="gui_udhyami_save_button"></button>
 </div>
