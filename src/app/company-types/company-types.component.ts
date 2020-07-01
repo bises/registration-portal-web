@@ -3,6 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyErrorStateMatcher } from 'src/app/utilities/MyErrorStateMatcher';
 import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
 import { UdhyogService } from '../udhyog/udhyog.service';
+import { NgxSpinnerService } from "ngx-spinner";
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-company-types',
@@ -28,7 +30,9 @@ export class CompanyTypesComponent implements OnInit {
   })
 
   constructor(private cdRef: ChangeDetectorRef,
-    private udhyogService: UdhyogService) { }
+    private udhyogService: UdhyogService,
+    private spinner: NgxSpinnerService,
+    private snackBar: MatSnackBar) { }
 
   ngOnInit() {
     if(this.companyType){
@@ -39,10 +43,6 @@ export class CompanyTypesComponent implements OnInit {
       this.companySubTypes = this.companyType.subTypes
       this.isAddingCategories = true;
     }
-  }
-
-  getSubTypes(event: any){
-    console.log(event);
   }
 
   addSubType(){
@@ -57,6 +57,7 @@ export class CompanyTypesComponent implements OnInit {
   }
 
   submit(){
+    this.spinner.show();
     let comanyTypeObject: CompanyTypeObject = {
       typeName: this.typesFormGroup.controls["types"].value,
       subTypes: this.companySubTypes,
@@ -64,7 +65,16 @@ export class CompanyTypesComponent implements OnInit {
     }
     this.udhyogService.saveUdhyogType(comanyTypeObject)
     .subscribe(data => {      
+      this.spinner.hide();
+      this.snackBar.open('Success', 'End Now', {
+        verticalPosition: 'bottom',
+        horizontalPosition: 'center',
+        duration: 3000
+      })
       this.save.emit(data);
+    }, error => {
+      this.spinner.hide();
+      console.log(error);
     })
   }
 

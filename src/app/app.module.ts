@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -21,6 +21,8 @@ import { PersonModalComponent } from './persons/person-modal/person-modal.compon
 import { CompanyTypesComponent } from './company-types/company-types.component';
 import { CompanyTypesModalComponent } from './company-types/company-types-modal/company-types-modal.component';
 import { HeaderComponent } from './header/header.component';
+import { NgxSpinnerModule } from "ngx-spinner";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -50,13 +52,16 @@ import { HeaderComponent } from './header/header.component';
     MatListModule,
     ReactiveFormsModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxSpinnerModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
     { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check-indeterminate'}
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
 export class AppModule { }
