@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators, FormGroup } from '@angular/forms';
 import { UdhyogService } from '../udhyog.service';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
@@ -10,6 +10,8 @@ import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
 import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
 import { CompanyTypesModalComponent } from 'src/app/company-types/company-types-modal/company-types-modal.component';
 import { CompanyCategory } from 'src/app/interfaces/companyCategory';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-udhyog-registration',
@@ -81,11 +83,12 @@ export class UdhyogRegistrationComponent implements OnInit {
 
   constructor(
     private udhyogService: UdhyogService,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private spinner: NgxSpinnerService,
+    private snackBar: MatSnackBar
   ) { }
 
   ngOnInit() {
-    // this.udhyogService.test().subscribe(data => console.log(data));
     this.udhyogService.getUdhyogCategories()
       .subscribe((data: CompanyTypeObject[]) => {
         if(data){
@@ -127,7 +130,8 @@ export class UdhyogRegistrationComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe((result: CompanyTypeObject | null) => {
       if(result){
-        if(!companyType){this.companyTypeObjects.push(result);          
+        if(!companyType){
+          this.companyTypeObjects.push(result);          
           this.udhyogTypes.push(result.typeName);          
           this.udhyogDartaFormGroup.patchValue({
             companyType: result.typeName
@@ -144,6 +148,7 @@ export class UdhyogRegistrationComponent implements OnInit {
   }
 
   public register(){
+    this.spinner.show();
     let udhyog: Udhyog = {
       registrationNumber: +this.udhyogDartaFormGroup.value.registrationNumber,
       registrationDate: new Date(this.udhyogDartaFormGroup.value.registrationDate),
@@ -171,11 +176,17 @@ export class UdhyogRegistrationComponent implements OnInit {
     }
     this.udhyogService.saveUdhyog(udhyog)
       .subscribe((data: Udhyog) => {
-        this.initilizeForm(data)
+        this.initilizeForm()
+        this.spinner.hide();
+        this.snackBar.open('Success', 'End Now', {
+          verticalPosition: 'bottom',
+          horizontalPosition: 'center',
+          duration: 3000
+        })
       });
   }
 
-  initilizeForm(data: Udhyog) {
+  initilizeForm() {
     // Add method to intialize the form
   }
 }
