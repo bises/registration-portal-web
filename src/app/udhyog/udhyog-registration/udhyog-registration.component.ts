@@ -150,7 +150,7 @@ export class UdhyogRegistrationComponent implements OnInit {
   public register(){
     this.spinner.show();
     let udhyog: Udhyog = {
-      registrationNumber: +this.udhyogDartaFormGroup.value.registrationNumber,
+      registrationNumber: this.udhyogDartaFormGroup.value.registrationNumber,
       registrationDate: new Date(this.udhyogDartaFormGroup.value.registrationDate),
       companyName: this.udhyogDartaFormGroup.value.companyName,
       legalType: this.udhyogDartaFormGroup.value.legalType,

@@ -14,15 +14,23 @@ import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
+import {MatTableModule} from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS, JsonpInterceptor } from '@angular/common/http';
 import { PersonModalComponent } from './persons/person-modal/person-modal.component';
 import { CompanyTypesComponent } from './company-types/company-types.component';
 import { CompanyTypesModalComponent } from './company-types/company-types-modal/company-types-modal.component';
 import { HeaderComponent } from './header/header.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatExpansionModule } from '@angular/material/expansion';
+import {MatButtonModule} from '@angular/material/button';
+import { UdhyogSearchComponent } from './udhyog/udhyog-search/udhyog-search.component';
+import { NepaliDateFormaterPipe } from './pipes/nepali-date-formater.pipe';
+import { DatePipe } from '@angular/common';
+import { MatSortModule } from '@angular/material/sort';
+import { CertificateComponent } from './udhyog/certificate/certificate.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +42,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     PersonModalComponent,
     CompanyTypesComponent,
     CompanyTypesModalComponent,
-    HeaderComponent
+    HeaderComponent,
+    UdhyogSearchComponent,
+    NepaliDateFormaterPipe,
+    CertificateComponent
   ],
   entryComponents: [
     PersonModalComponent,
@@ -50,16 +61,22 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatDialogModule,
     MatCheckboxModule,
     MatListModule,
+    MatTableModule,
+    MatSortModule,
+    MatButtonModule,
+    MatExpansionModule,
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
     NgxSpinnerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    HttpClientJsonpModule
   ],
-  providers: [
+  providers: [ DatePipe,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
     { provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: { hasBackdrop: true } },
-    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check-indeterminate'}
+    { provide: MAT_CHECKBOX_CLICK_ACTION, useValue: 'check-indeterminate'},
+    { provide: HTTP_INTERCEPTORS, useClass: JsonpInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],

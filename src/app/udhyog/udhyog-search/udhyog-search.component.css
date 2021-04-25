@@ -1,0 +1,27 @@
+/* table {
+    width: 95%;
+    margin: auto;
+}
+
+.mat-column-select {
+    overflow: initial;
+}
+
+.mat-header-cell{
+    padding: 10px;
+}
+
+td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+    padding: 10px
+} */
+table {
+    width: 100%;
+    table-layout: fixed;
+  }
+  
+  th, td {
+    overflow: hidden;
+    width: 200px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }

@@ -1,4 +1,4 @@
-export interface WorkersDetail {
-    maleWorkerNumber: number,
-    femaleWorkerNumber: number
+export class WorkersDetail {
+    maleWorkerNumber: number;
+    femaleWorkerNumber: number;
 }

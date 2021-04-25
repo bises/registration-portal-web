@@ -11,6 +11,7 @@ export class Constants {
   public static gui_udhyogdarta_darta_no = 'btf{ g+';
   public static gui_udhyogdarta_darta_miti = 'btf{ ldlt';
   public static gui_udhyogdarta_darta_miti_hint = 'pwf/)fM 2070.12.24 2070 r}q 24';
+  public static gui_udhyogdarta_darta_miti_hint_short = 'pwf/)fM 2070.12.24';
   public static gui_udhyogdarta_darta_no_error_pattern = 'btf{ gDa/df gDa/ dfq /fVgÚxf]nf';
   public static gui_udhyogdarta_darta_miti_error_pattern = 'ldtL n]v]sf] z}ln ldn]g';
   public static gui_udhyogdarta_udhyog_category = 'pBf]usf] k|sf/';
@@ -59,4 +60,13 @@ export class Constants {
   public static gui_udhyami_contact_number = ';Dks{ g+';
   public static gui_udhyami_save_button = ';]e ug"{xf];\\';
   public static gui_udhyami_cancel_button = 'aGb ug"{xf];\\';
+
+  //search component
+  public static gui_udhyog_search_from = 'b]lv';
+  public static gui_udhyog_search_to = ';Dd';
+  public static gui_udhyog_search_renew_date = 'gljs/)f ldlt';
+  public static gui_udhyog_search_asset_increment_date = 'k"+lhljl$ ldlt';
+  public static gui_udhyog_search_place_change_date = '&f+p;f/L ldlt';
+  public static gui_udhyog_search_advanced_filter = "cGo lkmN^/";
+  public static gui_udhyog_search_search_button = "vf]h";
 }

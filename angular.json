@@ -127,5 +127,8 @@
       }
     }
   },
-  "defaultProject": "RegistrationPortal"
+  "defaultProject": "RegistrationPortal",
+  "cli": {
+    "analytics": false
+  }
 }
