@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { CompanyTypeObject } from '../interfaces/companyTypeObject';
-import { Udhyog } from '../interfaces/Udhyog';
+import { Udhyog } from 'src/app/interfaces/udhyog';
 
 @Injectable({
   providedIn: 'root'
