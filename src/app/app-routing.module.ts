@@ -4,11 +4,13 @@ import { PersonsComponent } from './persons/persons.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { UdhyogRegistrationComponent } from './udhyog/udhyog-registration/udhyog-registration.component';
 import { UdhyogSearchComponent } from './udhyog/udhyog-search/udhyog-search.component';
+import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-landing-page.component';
 
 const routes: Routes = [
   { path: '', component: HomepageComponent },
   { path: 'udhyog-registration', component: UdhyogRegistrationComponent },
-  { path: 'udhyog-search', component: UdhyogSearchComponent}
+  { path: 'udhyog-search', component: UdhyogSearchComponent},
+  { path: 'udhyog', component: UdhyogLandingPageComponent}
 ];
 
 @NgModule({

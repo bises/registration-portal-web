@@ -7,6 +7,14 @@ export class Constants {
   public static gui_homepage_talimDarta = 'tflnd ljj/)f';
   public static gui_homepage_talimDarta_description = 'tflnd ljj/)f btf{ ug]{ kmf/d';
 
+  // Udhyog darta Landing page
+  public static gui_udhyog_landing_page_udhyogDarta = 'pBf]u btf{';
+  public static gui_udhyog_landing_page_udhyogDarta_description = 'pBf]u btf{ ug]{ kmf/d';
+
+  public static gui_udhyog_landing_page_register = '/lh:^/';
+  public static gui_udhyog_landing_page_register_description = 'btf{ ePsf] pBf]ux? x]g]{ &fp+';
+
+
   //Udhyog darta content
   public static gui_udhyogdarta_darta_no = 'btf{ g+';
   public static gui_udhyogdarta_darta_miti = 'btf{ ldlt';

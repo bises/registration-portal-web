@@ -31,6 +31,7 @@ import { NepaliDateFormaterPipe } from './pipes/nepali-date-formater.pipe';
 import { DatePipe } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { CertificateComponent } from './udhyog/certificate/certificate.component';
+import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-landing-page.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { CertificateComponent } from './udhyog/certificate/certificate.component
     HeaderComponent,
     UdhyogSearchComponent,
     NepaliDateFormaterPipe,
-    CertificateComponent
+    CertificateComponent,
+    UdhyogLandingPageComponent
   ],
   entryComponents: [
     PersonModalComponent,
