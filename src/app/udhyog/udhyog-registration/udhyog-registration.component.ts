@@ -7,6 +7,11 @@ import { PersonModalComponent } from '../../persons/person-modal/person-modal.co
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar} from '@angular/material/snack-bar';
 import { Udhyog } from '../../interfaces/udhyog';
+import { CompanyOwner } from 'src/app/interfaces/companyOwner';
+import { CompanyCategory } from 'src/app/interfaces/companyCategory';
+import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
+import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
+import { CompanyTypesModalComponent } from 'src/app/company-types/company-types-modal/company-types-modal.component';
 
 @Component({
   selector: 'app-udhyog-registration',
