@@ -4,14 +4,9 @@ import { UdhyogService } from '../udhyog.service';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
 import { MatDialog } from '@angular/material/dialog';
 import { PersonModalComponent } from '../../persons/person-modal/person-modal.component';
-import { Udhyog } from 'src/app/interfaces/Udhyog';
-import { CompanyOwner } from 'src/app/interfaces/companyOwner';
-import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
-import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
-import { CompanyTypesModalComponent } from 'src/app/company-types/company-types-modal/company-types-modal.component';
-import { CompanyCategory } from 'src/app/interfaces/companyCategory';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MatSnackBar} from '@angular/material/snack-bar';
+import { Udhyog } from '../../interfaces/udhyog';
 
 @Component({
   selector: 'app-udhyog-registration',

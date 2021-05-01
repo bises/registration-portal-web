@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { CompanyCategory } from 'src/app/interfaces/companyCategory';
-import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
+import { CompanyCategory } from '../../interfaces/companyCategory';
+import { CompanyLegalTypes } from '../../interfaces/companyLegalTypes';
 import { UdhyogService } from '../udhyog.service';
-import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
+import { CompanyTypeObject } from '../../interfaces/companyTypeObject';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Udhyog } from 'src/app/interfaces/Udhyog';
+import { Udhyog } from '../../interfaces/Udhyog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
-import { MyErrorStateMatcher } from 'src/app/utilities/MyErrorStateMatcher';
+import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
 
 @Component({
   selector: 'app-udhyog-search',
