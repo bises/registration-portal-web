@@ -6,6 +6,9 @@ export class Constants {
   public static gui_homepage_badijyaDarta_description = 'jfl)fHo btf{ ug]{ kmf/d';
   public static gui_homepage_talimDarta = 'tflnd ljj/)f';
   public static gui_homepage_talimDarta_description = 'tflnd ljj/)f btf{ ug]{ kmf/d';
+  public static gui_jumbotron_title = 'a]nsf gu/kflnsf';
+  public static gui_jumbotron_description1 = 'a]nsf gu/kflnsf sfof{no, /fdk"/';
+  public static gui_jumbotron_description2 = 'k|b]z g= 1 pbok"/ -g]kfn_';
 
   // Udhyog darta Landing page
   public static gui_udhyog_landing_page_udhyogDarta = 'pBf]u btf{';
@@ -69,7 +72,7 @@ export class Constants {
   public static gui_udhyami_save_button = ';]e ug"{xf];\\';
   public static gui_udhyami_cancel_button = 'aGb ug"{xf];\\';
 
-  //search component
+  // search component
   public static gui_udhyog_search_from = 'b]lv';
   public static gui_udhyog_search_to = ';Dd';
   public static gui_udhyog_search_renew_date = 'gljs/)f ldlt';
@@ -77,4 +80,11 @@ export class Constants {
   public static gui_udhyog_search_place_change_date = '&f+p;f/L ldlt';
   public static gui_udhyog_search_advanced_filter = "cGo lkmN^/";
   public static gui_udhyog_search_search_button = "vf]h";
+
+  // navbar
+  public static gui_navbar_logo_alt = '#/]n"';
+  public static gui_navbar_udhyogDarta = 'pBf]u btf{';
+  public static gui_navbar_badijyaDarta = 'jfl)fHo btf{';
+  public static gui_talim_talimDarta = 'tflnd ljj/)f';
+  public static gui_talim_homepage = 'xf]d k]h';
 }

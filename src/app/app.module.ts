@@ -25,7 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { NgxSpinnerModule } from "ngx-spinner";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatExpansionModule } from '@angular/material/expansion';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { UdhyogSearchComponent } from './udhyog/udhyog-search/udhyog-search.component';
 import { NepaliDateFormaterPipe } from './pipes/nepali-date-formater.pipe';
 import { DatePipe } from '@angular/common';
