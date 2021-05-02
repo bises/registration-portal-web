@@ -4,7 +4,7 @@ import { CompanyLegalTypes } from '../../interfaces/companyLegalTypes';
 import { UdhyogService } from '../udhyog.service';
 import { CompanyTypeObject } from '../../interfaces/companyTypeObject';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { Udhyog } from 'src/app/interfaces/Udhyog';
+import { Udhyog } from 'src/app/interfaces/udhyog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
