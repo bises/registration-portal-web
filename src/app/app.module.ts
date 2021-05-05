@@ -14,7 +14,7 @@ import { MatCheckboxModule, MAT_CHECKBOX_CLICK_ACTION } from '@angular/material/
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS } from '@angular/material/dialog';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ErrorStateMatcher, ShowOnDirtyErrorStateMatcher } from '@angular/material/core';
 import { HttpClientModule, HttpClientJsonpModule, HTTP_INTERCEPTORS, JsonpInterceptor } from '@angular/common/http';
@@ -32,6 +32,11 @@ import { DatePipe } from '@angular/common';
 import { MatSortModule } from '@angular/material/sort';
 import { CertificateComponent } from './udhyog/certificate/certificate.component';
 import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-landing-page.component';
+import { AuthModule } from '@auth0/auth0-angular';
+import { environment as env } from '../environments/environment';
+import { LoginComponent } from './authentication/login/login.component';
+import { SignupComponent } from './authentication/signup/signup.component';
+import { LogoutComponent } from './authentication/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -47,7 +52,10 @@ import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-
     UdhyogSearchComponent,
     NepaliDateFormaterPipe,
     CertificateComponent,
-    UdhyogLandingPageComponent
+    UdhyogLandingPageComponent,
+    LoginComponent,
+    SignupComponent,
+    LogoutComponent
   ],
   entryComponents: [
     PersonModalComponent,
@@ -72,7 +80,12 @@ import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-
     HttpClientModule,
     NgxSpinnerModule,
     MatSnackBarModule,
-    HttpClientJsonpModule
+    HttpClientJsonpModule,
+    AuthModule.forRoot({
+      clientId: env.auth.clientId,
+      domain: env.auth.domain,
+      redirectUri: env.auth.redirectUri
+    })
   ],
   providers: [ DatePipe,
     { provide: ErrorStateMatcher, useClass: ShowOnDirtyErrorStateMatcher },
