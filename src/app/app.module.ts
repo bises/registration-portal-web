@@ -34,9 +34,6 @@ import { CertificateComponent } from './udhyog/certificate/certificate.component
 import { UdhyogLandingPageComponent } from './udhyog/udhyog-landing-page/udhyog-landing-page.component';
 import { AuthModule } from '@auth0/auth0-angular';
 import { environment as env } from '../environments/environment';
-import { LoginComponent } from './authentication/login/login.component';
-import { SignupComponent } from './authentication/signup/signup.component';
-import { LogoutComponent } from './authentication/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -52,10 +49,7 @@ import { LogoutComponent } from './authentication/logout/logout.component';
     UdhyogSearchComponent,
     NepaliDateFormaterPipe,
     CertificateComponent,
-    UdhyogLandingPageComponent,
-    LoginComponent,
-    SignupComponent,
-    LogoutComponent
+    UdhyogLandingPageComponent
   ],
   entryComponents: [
     PersonModalComponent,
