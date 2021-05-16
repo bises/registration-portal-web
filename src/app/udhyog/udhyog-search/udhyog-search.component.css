@@ -25,3 +25,7 @@ table {
     text-overflow: ellipsis;
     white-space: nowrap;
   }
+
+  tr:hover {
+    background: whitesmoke;
+  }

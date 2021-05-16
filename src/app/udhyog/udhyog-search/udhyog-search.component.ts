@@ -8,6 +8,8 @@ import { Udhyog } from 'src/app/interfaces/udhyog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
 import { MyErrorStateMatcher } from '../../utilities/MyErrorStateMatcher';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-udhyog-search',
@@ -73,7 +75,11 @@ export class UdhyogSearchComponent implements OnInit {
 
   @ViewChild(MatSort, {static: true}) sort: MatSort; 
 
-  constructor(private udhyogService: UdhyogService) { }
+  constructor(
+    private udhyogService: UdhyogService,
+    private spinner: NgxSpinnerService,
+    private router: Router
+    ) { }
 
   ngOnInit() {    
     this.udhyogService.getUdhyogCategories()
@@ -96,6 +102,7 @@ export class UdhyogSearchComponent implements OnInit {
   }
 
   search(){
+    this.spinner.show();
     var filterObject = this.udhyogFilterFormGroup.value;
     for (var property in filterObject){
       if(!filterObject[property]){
@@ -105,12 +112,17 @@ export class UdhyogSearchComponent implements OnInit {
       }
     }
     this.udhyogService.getFilteredUdhyog(filterObject)
-    .subscribe((udhyog: Udhyog[]) => {
+    .subscribe((udhyog: Udhyog[]) => {      
+      this.spinner.hide();
       this.udhyogDataSource = new MatTableDataSource(udhyog);
       this.udhyogDataSource.sort = this.sort;
       this.udhyogMapping = Udhyog.getMappingEnglishToNepali();
       this.displayedColumns = Object.getOwnPropertyNames(Udhyog.getMappingNepaliToEnglish());
     });
+  }
+
+  editUdhyog(event: Udhyog){
+    this.router.navigate(['udhyog-registration', event.registrationNumber])
   }
 
 }

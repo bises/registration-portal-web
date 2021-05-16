@@ -11,7 +11,6 @@ export class NepaliDateFormaterPipe implements PipeTransform {
   }
 
   transform(value: any, ...args: any[]): any {
-    console.log(value)
     let dateFormat = this.datePipe.transform(value, 'yyyy.MM.dd');
     return null;
   }

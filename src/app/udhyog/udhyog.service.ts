@@ -8,6 +8,10 @@ import { Udhyog } from '../interfaces/udhyog';
   providedIn: 'root'
 })
 export class UdhyogService {
+  getUdhyogByRegistrationNumber(registrationNumber: number): Observable<Udhyog> {
+    let url = `https://iqi5ag4a93.execute-api.us-east-2.amazonaws.com/Prod/api/udhyog/${registrationNumber}`;
+    return this.httpClient.get<Udhyog>(url);
+  }
 
   constructor(private httpClient: HttpClient) { }
 

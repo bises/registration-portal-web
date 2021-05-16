@@ -12,6 +12,9 @@ import { CompanyCategory } from 'src/app/interfaces/companyCategory';
 import { CompanyTypeObject } from 'src/app/interfaces/companyTypeObject';
 import { CompanyLegalTypes } from 'src/app/interfaces/companyLegalTypes';
 import { CompanyTypesModalComponent } from 'src/app/company-types/company-types-modal/company-types-modal.component';
+import { ActivatedRoute, Router } from '@angular/router';
+import { combineLatest, Observable, zip } from 'rxjs';
+import { NepaliDate } from 'src/app/utilities/NepaliDate';
 
 @Component({
   selector: 'app-udhyog-registration',
@@ -85,17 +88,33 @@ export class UdhyogRegistrationComponent implements OnInit {
     private udhyogService: UdhyogService,
     private dialog: MatDialog,
     private spinner: NgxSpinnerService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
-    this.udhyogService.getUdhyogCategories()
-      .subscribe((data: CompanyTypeObject[]) => {
-        if(data){
-          this.companyTypeObjects = data;
-          this.udhyogTypes = data.map(c => c.typeName);
+    let apiCallList: Observable<any>[] = [] ;
+    this.route.params.subscribe(params => {      
+      let getUdhyogCategories$ = this.udhyogService.getUdhyogCategories();
+      apiCallList.push(getUdhyogCategories$)
+      if(params['id'] > 0) {
+        let getUdhyogByRegistration$ = this.udhyogService.getUdhyogByRegistrationNumber(params['id']);
+        apiCallList.push(getUdhyogByRegistration$);        
+      }
+      combineLatest(apiCallList)
+      .subscribe(([companyTypeObjects, udhyog]) => {        
+        if(companyTypeObjects){
+          this.companyTypeObjects = companyTypeObjects;
+          this.udhyogTypes = companyTypeObjects.map(c => c.typeName);
         }
+        if(udhyog) {
+          this.initilizeForm(udhyog);
+        }
+      }, error => {
+        console.log(error);
       });
+    });
   }
 
   openModal(): void {
@@ -111,8 +130,11 @@ export class UdhyogRegistrationComponent implements OnInit {
     });
   }
 
-  getSubtypes(){
+  getSubtypes(companyType?: string){
     let selectedType = this.udhyogDartaFormGroup.value.companyType;
+    if(!selectedType){
+      selectedType = companyType;
+    }
     if (selectedType) {
       var selectedTypeObject = this.companyTypeObjects.find(c => c.typeName === selectedType);
       if (selectedTypeObject) {
@@ -176,7 +198,7 @@ export class UdhyogRegistrationComponent implements OnInit {
     }
     this.udhyogService.saveUdhyog(udhyog)
       .subscribe((data: Udhyog) => {
-        this.initilizeForm()
+        this.initilizeForm(data)
         this.spinner.hide();
         this.snackBar.open('Success', 'End Now', {
           verticalPosition: 'bottom',
@@ -186,7 +208,29 @@ export class UdhyogRegistrationComponent implements OnInit {
       });
   }
 
-  initilizeForm() {
-    // Add method to intialize the form
+  initilizeForm(udhyog: Udhyog) {    
+    this.getSubtypes(udhyog.companyType);
+    this.udhyogDartaFormGroup.setValue({
+      registrationNumber: udhyog.registrationNumber,
+      registrationDate: NepaliDate.ConvertEnglishDateToNepaliShortDate(udhyog.registrationDate),
+      companyName: udhyog.companyName,
+      legalType: udhyog.legalType,
+      companyCategory: udhyog.companyCategory,
+      companyType: udhyog.companyType,
+      companySubType: udhyog.companySubType,
+      objective: udhyog.objective,
+      annualProduction: udhyog.annualProduction,
+      electricalPowerUsage: udhyog.electricalPowerUsage,
+      contact: udhyog.contact,
+      revenue: udhyog.revenue,
+      panNumber: udhyog.panNumber,
+      nagarpalikaName: udhyog.companyAddress.nagarpalikaName,
+      wadaNumber: udhyog.companyAddress.wadaNumber,
+      areaNumber: udhyog.companyAddress.areaNumber,
+      maleWorkerNumber: udhyog.workersDetail.maleWorkerNumber,
+      femaleWorkerNumber: udhyog.workersDetail.femaleWorkerNumber, 
+    });
+    this.owners = udhyog.ownersDetail;
+    this.udhyogDartaFormGroup.value.companySubType = udhyog.companySubType
   }
 }

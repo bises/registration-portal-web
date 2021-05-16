@@ -147,7 +147,7 @@
             <button (click)="search()" type="button" class="btn btn-primary mt-3 w-25" appLocalization="gui_udhyog_search_search_button"></button>
         </div>
     </div>
-
+    <ngx-spinner></ngx-spinner>
     <div *ngIf="udhyogDataSource" class="mt-5" style="overflow-x: scroll;">
         <table mat-table [dataSource]="udhyogDataSource" matSort class="mat-elevation-z8">
 
@@ -238,7 +238,7 @@
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="editUdhyog(row)"></tr>
         </table>
     </div>
 </div>
